@@ -1,0 +1,24 @@
+body {
+  background-color: #808080;
+}
+
+table {
+  margin: 0;
+  padding: 0;
+  border: 2px solid #333;
+  border-spacing: 0;
+}
+
+td {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+}
+
+td.white {
+  background-color: #fff;
+}
+
+td.black {
+  background-color: #000;
+}

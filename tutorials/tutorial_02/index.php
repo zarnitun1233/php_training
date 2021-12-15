@@ -10,24 +10,27 @@
 
 <body>
     <?php
-    for ($a = 1; $a <= 11; $a++) {
-        if ($a % 2 != 0) {
-            for ($b = $a; $b < 11; $b += 2) {
+    /**
+     * For Loop for star triangle
+     */
+    for ($start = 1; $start <= 11; $start++) {
+        if ($start % 2 != 0) {
+            for ($space = $start; $space < 11; $space += 2) {
                 echo "&nbsp;&nbsp;&nbsp;";
             }
-            for ($c = 1; $c <= $a; $c++) {
+            for ($star = 1; $star <= $start; $star++) {
                 echo "*&nbsp;";
             }
         }
         echo "<br>";
     }
     echo "<br>";
-    for ($i = 9; $i >= 1; $i--) {
-        if ($i % 2  != 0) {
-            for ($j = $i; $j < 11; $j += 2) {
+    for ($start = 9; $start >= 1; $start--) {
+        if ($start % 2  != 0) {
+            for ($space = $start; $space < 11; $space += 2) {
                 echo "&nbsp;&nbsp;&nbsp;";
             }
-            for ($k = 1; $k <= $i; $k++) {
+            for ($star = 1; $star <= $start; $star++) {
                 echo "*&nbsp;";
             }
         }
