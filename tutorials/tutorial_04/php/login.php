@@ -28,9 +28,8 @@
         if ($username && $password) {
             $_SESSION['auth'] = true;
             $_SESSION['id'] = $username;
-            header("location:index.php");
-        }
-        else {
+            header("location:../index.php");
+        } else {
             echo "Please Fill Username and Password Completely";
         }
     }

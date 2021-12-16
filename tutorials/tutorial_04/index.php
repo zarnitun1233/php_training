@@ -16,17 +16,17 @@
      * showing home Page if you are already login
      */
     if (isset($_SESSION['auth'])) {
-        ?>
+    ?>
         <h1>Welcome to Home Page</h1>
         <p>Congratulations <?= $_SESSION['id']; ?> , You are log in.</p>
-        <a href="logout.php">Logout</a>
-        <?php
+        <a href="php/logout.php">Logout</a>
+    <?php
     }
     /**
      * Redirecting Login Page if you are not login
      */
     else {
-        header("location:login.php");
+        header("location:php/login.php");
     }
     ?>
 </body>
