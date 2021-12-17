@@ -1,0 +1,11 @@
+table,
+table td {
+  padding: 10px;
+  border: 1px solid #000;
+  border-collapse: collapse;
+}
+
+table.excel tr:first-child {
+  font-size: 20px;
+  font-weight: 700;
+}
