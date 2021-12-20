@@ -31,7 +31,7 @@
                 move_uploaded_file($tmp, "$folder/$name");
                 echo "Upload Finished.";
             } else {
-                echo "Please Insert Only .jpg or .png Image File!";
+                echo "Please Insert Only .jpeg or .jpg or .png Image File!";
             }
         } else {
             echo "Cannot empty Both Folder Name and Image!";
