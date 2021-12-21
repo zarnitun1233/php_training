@@ -19,15 +19,27 @@ include("phpqrcode/qrlib.php");
         <input type="submit" name="submit" value="Generate">
     </form><br>
     <?php
+    /**
+     * Validate User Input and generate QR Code
+     */
     if (isset($_GET['submit'])) {
         if ($_GET['txt']) {
             $text = $_GET['txt'];
             $folderName = "images/";
+            /**
+             * Create folder if folder doesn't exist
+             */
             if (!is_dir($folderName)) {
                 mkdir($folderName);
             }
             $file = $folderName . uniqid() . ".png";
+            /**
+             * Generate QR Code
+             */
             QRcode::png($text, $file);
+            /**
+             * Output the generated QR Code
+             */
             echo "<img src='" . $file . "'>";
         } else {
             echo "Input Text cannot be empty!";
