@@ -53,7 +53,7 @@ if (isset($_POST['email'])) {
         $mail->addAddress("$emailTo");
         $mail->addReplyTo('no-reply@mgmg243444.com', 'No reply');
 
-        $url = "http://" . $_SERVER["HTTP_HOST"] . dirname($_SERVER["PHP_SELF"]) . "/resetPassword.php?code=$code";
+        $url = "http://" . $_SERVER["HTTP_HOST"] . dirname($_SERVER["PHP_SELF"]) . "/reset_password.php?code=$code";
         $mail->isHTML(true);
         $mail->Subject = 'Your Password Reset Link';
         $mail->Body    = "<h1>You requested a password reset</h1>

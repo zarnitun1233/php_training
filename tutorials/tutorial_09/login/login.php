@@ -22,8 +22,8 @@ $passwordForm = md5($passwordForm);
  * 
  */
 foreach ($result as $data) {
-    if ($emailForm = $data->email) {
-        if ($passwordForm = $data->password) {
+    if ($emailForm == $data->email) {
+        if ($passwordForm == $data->password) {
             echo "Login Succeed";
         } else {
             echo "Invalid email and password";
