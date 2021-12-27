@@ -44,14 +44,14 @@ if (isset($_POST['email'])) {
         $mail->isSMTP();
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
-        $mail->Username   = 'mgmg243444@gmail.com';
-        $mail->Password   = 'brnyrbrnyr123';
+        $mail->Username   = 'your@gmail.com';
+        $mail->Password   = 'password';
         $mail->SMTPSecure = 'ssl';
         $mail->Port       = 465;
 
-        $mail->setFrom('mgmg243444@gmail.com', 'Reset Password');
+        $mail->setFrom('your@gmail.com', 'Reset Password');
         $mail->addAddress("$emailTo");
-        $mail->addReplyTo('no-reply@mgmg243444.com', 'No reply');
+        $mail->addReplyTo('no-reply@yourname.com', 'No reply');
 
         $url = "http://" . $_SERVER["HTTP_HOST"] . dirname($_SERVER["PHP_SELF"]) . "/reset_password.php?code=$code";
         $mail->isHTML(true);
