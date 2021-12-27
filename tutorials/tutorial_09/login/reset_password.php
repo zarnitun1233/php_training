@@ -53,7 +53,7 @@ if (isset($_POST['password']) and isset($_POST['confirmPassword'])) {
          * If user account is being, update password to database
          */
         else {
-            $sqlUpdate = "UPDATE useraccount SET password = :name WHERE email = $email";
+            $sqlUpdate = "UPDATE useraccount SET password = :password WHERE email = '$email'";
             $statementUpdate = $db->prepare($sqlUpdate);
             $statementUpdate->execute([
                 ':password' => $password
