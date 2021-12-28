@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("../php/config.php");
 /**
  * Pull out data from database, useraccount table
@@ -25,6 +26,10 @@ foreach ($result as $data) {
     if ($emailForm == $data->email) {
         if ($passwordForm == $data->password) {
             echo "Login Succeed";
+            $_SESSION['auth'] = true;
+?>
+            <a href="../index.php">Go to Home Page</a>
+<?php
         } else {
             echo "Invalid email and password";
         }

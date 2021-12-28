@@ -2,6 +2,13 @@
 session_start();
 include("php/config.php");
 /**
+ * Check the user is already login or not
+ */
+if (!isset($_SESSION['auth'])) {
+    header("location: login/login_form.php");
+    exit();
+}
+/**
  * Pull data from Database
  */
 $sql = "SELECT * FROM user";
@@ -99,7 +106,8 @@ if ($_SESSION['delete']) {
     <div id="convas-container">
         <canvas id="myChart"></canvas>
     </div><br><br>
-    <a href="php/new.php">Create New User</a>
+    <a href="php/new.php">Create New User</a> |
+    <a href="login/logout.php">Logout</a>
 
     <script src="js/jquery.min.js"></script>
     <script src="js/chart.min.js"></script>
