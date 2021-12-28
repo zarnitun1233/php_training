@@ -56,12 +56,12 @@ if (isset($_POST['email'])) {
                 $mail->isSMTP();
                 $mail->Host       = 'smtp.gmail.com';
                 $mail->SMTPAuth   = true;
-                $mail->Username   = 'mgmg243444@gmail.com';
-                $mail->Password   = 'brnyrbrnyr123';
+                $mail->Username   = 'yourname@gmail.com';
+                $mail->Password   = 'yourpassword';
                 $mail->SMTPSecure = 'ssl';
                 $mail->Port       = 465;
 
-                $mail->setFrom('mgmg243444@gmail.com', 'Reset Password');
+                $mail->setFrom('yourname@gmail.com', 'Reset Password');
                 $mail->addAddress("$emailTo");
                 $mail->addReplyTo('no-reply@yourname.com', 'No reply');
 
