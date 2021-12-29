@@ -31,7 +31,7 @@ class PostDao implements PostDaoInterface
      */
     public function addPostList(Request $request)
     {
-        Task::create(['name' => $request->name]);
+        return Task::create(['name' => $request->name]);
     }
 
     /**

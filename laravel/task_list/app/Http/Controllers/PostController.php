@@ -43,8 +43,14 @@ class PostController extends Controller
                 ->withInput()
                 ->withErrors($validator);
         }
-        $this->postInterface->addPostList($request);
-        return redirect('/');
+        $addList = $this->postInterface->addPostList($request);
+        if ($addList) {
+            return redirect('/');
+        } else {
+            return redirect('/')
+                ->withInput()
+                ->withErrors($validator);
+        }
     }
 
     /**
