@@ -7,14 +7,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /**
- * Show all tasks
+ * Show all Tasks List
  */
-Route::get('/', [PostController::class, 'showList']);
+Route::get('/', [PostController::class, 'showPostList']);
+
 /**
- * Add new tasks
+ * Add new Tasks
  */
-Route::post('/task', [PostController::class, 'createTask']);
+Route::post('/task', [PostController::class, 'createPostList']);
+
 /**
- * Delete the task
+ * Delete the Tasks
  */
-Route::delete('/task/{task}', [PostController::class, 'deleteTask']);
+Route::delete('/task/{task}', [PostController::class, 'deletePostList']);
