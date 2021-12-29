@@ -31,17 +31,29 @@ class PostController extends Controller
 
     /**
      * To add new tasks
+     * @param Request
      */
     public function createPostList(Request $request)
     {
-        return $this->postInterface->addPostList($request);
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|min:2'
+        ]);
+        if ($validator->fails()) {
+            return redirect('/')
+                ->withInput()
+                ->withErrors($validator);
+        }
+        $this->postInterface->addPostList($request);
+        return redirect('/');
     }
 
     /**
      * To delete tasks
+     * @param Task
      */
     public function deletePostList(Task $task)
     {
-        return $this->postInterface->deletePostList($task);
+        $this->postInterface->deletePostList($task);
+        return redirect("/");
     }
 }

@@ -39,6 +39,7 @@ class PostService implements PostServiceInterface
 
     /**
      * To add new tasks
+     * @param Request
      */
     public function addPostList(Request $request)
     {
@@ -47,6 +48,7 @@ class PostService implements PostServiceInterface
 
     /**
      * To delete tasks
+     * @param Task
      */
     public function deletePostList(Task $task)
     {

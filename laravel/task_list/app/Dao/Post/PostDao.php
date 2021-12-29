@@ -27,27 +27,19 @@ class PostDao implements PostDaoInterface
 
     /**
      * To add new tasks
+     * @param Request
      */
     public function addPostList(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|min:2'
-        ]);
-        if ($validator->fails()) {
-            return redirect('/')
-                ->withInput()
-                ->withErrors($validator);
-        }
         Task::create(['name' => $request->name]);
-        return redirect('/');
     }
 
     /**
      * To delete tasks
+     * @param Task
      */
     public function deletePostList(Task $task)
     {
         $task->delete();
-        return redirect('/');
     }
 }
