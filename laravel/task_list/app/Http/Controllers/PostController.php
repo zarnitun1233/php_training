@@ -9,7 +9,11 @@ use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
+    /**
+     * PostInterface
+     */
     private $postInterface;
+
     /**
      * Create a new controller instance.
      *
@@ -17,6 +21,7 @@ class PostController extends Controller
      */
     public function __construct(PostServiceInterface $postServiceInterface)
     {
+        $this->middleware('auth');
         $this->postInterface = $postServiceInterface;
     }
 
