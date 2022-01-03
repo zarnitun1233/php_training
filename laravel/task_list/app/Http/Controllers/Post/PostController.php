@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Post;
 
 use App\Models\Task;
 use App\Contracts\Services\Post\PostServiceInterface;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
@@ -21,7 +22,6 @@ class PostController extends Controller
      */
     public function __construct(PostServiceInterface $postServiceInterface)
     {
-        $this->middleware('auth');
         $this->postInterface = $postServiceInterface;
     }
 

@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\Post\PostController;
 use App\Models\Task;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -10,17 +10,17 @@ use Illuminate\Support\Facades\Route;
 /**
  * Show all Tasks List
  */
-Route::get('/', [PostController::class, 'showPostList']);
+Route::get('/', [PostController::class, 'showPostList'])->middleware('auth');
 
 /**
  * Add new Tasks
  */
-Route::post('/task', [PostController::class, 'createPostList']);
+Route::post('/task', [PostController::class, 'createPostList'])->middleware('auth');
 
 /**
  * Delete the Tasks
  */
-Route::delete('/task/{task}', [PostController::class, 'deletePostList']);
+Route::delete('/task/{task}', [PostController::class, 'deletePostList'])->middleware('auth');
 
 /**
  * Show Login Form
