@@ -7,6 +7,9 @@ use App\Models\Student;
 use App\Models\Major;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Exports\StudentsExport;
+use App\Imports\StudentsImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class StudentController extends Controller
 {
@@ -99,5 +102,33 @@ class StudentController extends Controller
     {
         $this->postInterface->destory($id);
         return redirect("/")->with('success', 'Student deleted successfully');
+    }
+
+    /**
+     * Import / Export Template View
+     * @return \Illuminate\Support\Collection
+     */
+    public function importExportView()
+    {
+        return view('students.import');
+    }
+
+    /**
+     * Export Function
+     * @return \Illuminate\Support\Collection
+     */
+    public function export()
+    {
+        return Excel::download(new StudentsExport, 'students.csv');
+    }
+
+    /**
+     * Import Function
+     * @return \Illuminate\Support\Collection
+     */
+    public function import()
+    {
+        Excel::import(new StudentsImport, request()->file('file'));
+        return back()->with('success', 'Import Completed');;
     }
 }
