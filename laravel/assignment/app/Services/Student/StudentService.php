@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Services\Post;
+namespace App\Services\Student;
 
 use App\Models\Student;
 use App\Models\Task;
-use App\Contracts\Dao\Post\PostDaoInterface;
-use App\Contracts\Services\Post\PostServiceInterface;
+use App\Contracts\Dao\Student\StudentDaoInterface;
+use App\Contracts\Services\Student\StudentServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -13,28 +13,29 @@ use Illuminate\Support\Facades\Storage;
 /**
  * Service class for post.
  */
-class PostService implements PostServiceInterface
+class StudentService implements StudentServiceInterface
 {
     /**
      * post dao
      */
-    private $postDao;
+    private $studentDao;
 
     /**
      * Class Constructor
      * @param PostDaoInterface
      */
-    public function __construct(PostDaoInterface $postDao)
+    public function __construct(StudentDaoInterface $studentDao)
     {
-        $this->postDao = $postDao;
+        $this->studentDao = $studentDao;
     }
 
     /**
      * Home Page Function to show data
+     * @param Request
      */
-    public function index()
+    public function index(Request $request)
     {
-        return $this->postDao->index();
+        return $this->studentDao->index($request);
     }
 
     /**
@@ -43,7 +44,7 @@ class PostService implements PostServiceInterface
      */
     public function create()
     {
-        return $this->postDao->create();
+        return $this->studentDao->create();
     }
 
     /**
@@ -53,7 +54,7 @@ class PostService implements PostServiceInterface
      */
     public function edit(Student $id)
     {
-        return $this->postDao->edit($id);
+        return $this->studentDao->edit($id);
     }
 
     /**
@@ -62,7 +63,7 @@ class PostService implements PostServiceInterface
      */
     public function destory(Student $student)
     {
-        return $this->postDao->destory($student);
+        return $this->studentDao->destory($student);
     }
 
     /**
@@ -71,7 +72,7 @@ class PostService implements PostServiceInterface
      */
     public function store(Request $request)
     {
-        return $this->postDao->store($request);
+        return $this->studentDao->store($request);
     }
 
     /**
@@ -80,6 +81,6 @@ class PostService implements PostServiceInterface
      */
     public function update(Request $request, Student $id)
     {
-        return $this->postDao->update($request, $id);
+        return $this->studentDao->update($request, $id);
     }
 }

@@ -1,20 +1,21 @@
 <?php
 
-namespace App\Contracts\Services\Post;
+namespace App\Contracts\Dao\Student;
 
 use App\Models\Student;
 use App\Models\Task;
 use Illuminate\Http\Request;
 
 /**
- * Interface for post service
+ * Interface for Data Accessing Object of Post
  */
-interface PostServiceInterface
+interface StudentDaoInterface
 {
     /**
      * Home Page Function to show data
+     * @param Request
      */
-    public function index();
+    public function index(Request $request);
 
     /**
      * Show the form for creating a new resource.
@@ -41,7 +42,7 @@ interface PostServiceInterface
 
     /**
      * Update Function
-     * @param Request $request, @param Student $student
+     * @param Request $request, @param Student $id
      */
     public function update(Request $request, Student $id);
 }

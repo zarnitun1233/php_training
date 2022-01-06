@@ -1,12 +1,12 @@
 @extends('students.layout')
 
 @section('content')
-<div class="row">
+<div class="row mt-3">
   <div class="col-lg-12 margin-tb">
-    <div class="pull-left">
+    <div class="float-start">
       <h2>Add New Student</h2>
     </div>
-    <div class="pull-right">
+    <div class="float-end">
       <a class="btn btn-primary" href="{{ url('/') }}"> Back</a>
     </div>
   </div>
@@ -49,7 +49,7 @@
       </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
     </div>
   </div>
 
