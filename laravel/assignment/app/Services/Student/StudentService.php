@@ -61,9 +61,9 @@ class StudentService implements StudentServiceInterface
      * Delete Function
      * @param Student $student
      */
-    public function destory(Student $student)
+    public function destory($id)
     {
-        return $this->studentDao->destory($student);
+        return $this->studentDao->destory($id);
     }
 
     /**

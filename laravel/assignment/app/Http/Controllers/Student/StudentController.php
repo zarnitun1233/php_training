@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 class StudentController extends Controller
 {
     /**
-     * PostInterface
+     * studentInterface
      */
     private $studentInterface;
 
@@ -100,7 +100,7 @@ class StudentController extends Controller
      * @param Student $id
      * @return \Illuminate\Http\Response
      */
-    public function destory(Student $id)
+    public function destory($id)
     {
         $this->studentInterface->destory($id);
         return redirect("/")->with('success', 'Student deleted successfully');

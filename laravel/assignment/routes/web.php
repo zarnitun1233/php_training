@@ -12,3 +12,9 @@ Route::delete('/delete/{id}', [StudentController::class, 'destory']);
 Route::get('/importExportView', [StudentController::class, 'importExportView']);
 Route::get('/export', [StudentController::class, 'export'])->name('export');
 Route::post('/import', [StudentController::class, 'import'])->name('import');
+Route::get('/api', function () {
+    return view('api.index');
+});
+Route::get('/api/create', function () {
+    return view('api.create');
+});

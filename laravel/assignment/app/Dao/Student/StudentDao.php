@@ -68,8 +68,9 @@ class StudentDao implements StudentDaoInterface
      * Destory Function
      * @param Student $student
      */
-    public function destory(Student $student)
+    public function destory($id)
     {
+        $student = Student::find($id);
         $student->delete();
     }
 

@@ -32,7 +32,7 @@ interface StudentDaoInterface
      * Delete Function
      * @param Student $student
      */
-    public function destory(Student $student);
+    public function destory($id);
 
     /**
      * Store Function
