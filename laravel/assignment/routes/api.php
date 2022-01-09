@@ -15,10 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/**
+ * Students CRUD with API routes
+ */
 Route::group([], function () {
     Route::get('/students', [StudentApiController::class, 'index']);
+    Route::get('/students/{id}', [StudentApiController::class, 'show']);
     Route::post('/students', [StudentApiController::class, 'store']);
     Route::get('/majors', [StudentApiController::class, 'getMajor']);
+    Route::get('/majors/{id}', [StudentApiController::class, 'getMajorById']);
+    Route::put('/students/update/{id}', [StudentApiController::class, 'update']);
     Route::delete('/students/delete/{id}', [StudentApiController::class, 'destroy']);
 });
 

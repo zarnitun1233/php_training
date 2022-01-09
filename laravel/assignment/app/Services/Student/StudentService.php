@@ -33,9 +33,18 @@ class StudentService implements StudentServiceInterface
      * Home Page Function to show data
      * @param Request
      */
-    public function index(Request $request)
+    public function index()
     {
-        return $this->studentDao->index($request);
+        return $this->studentDao->index();
+    }
+
+    /**
+     * Search Function
+     * @param Request $request
+     */
+    public function search(Request $request)
+    {
+        return $this->studentDao->search($request);
     }
 
     /**
@@ -79,8 +88,26 @@ class StudentService implements StudentServiceInterface
      * Update Function
      * @param Request $request, @param Student $student
      */
-    public function update(Request $request, Student $id)
+    public function update(Request $request, $id)
     {
         return $this->studentDao->update($request, $id);
+    }
+
+    /**
+     * Export Function
+     * @return \Illuminate\Support\Collection
+     */
+    public function export()
+    {
+        return $this->studentDao->export();
+    }
+
+    /**
+     * Import Function
+     * @return \Illuminate\Support\Collection
+     */
+    public function import()
+    {
+        return $this->studentDao->import();
     }
 }

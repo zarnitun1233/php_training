@@ -49,20 +49,18 @@ class StudentApiController extends Controller
             'major_id' => 'required',
         ]);
         $this->studentInterface->store($request);
-        return response()->json([
-            'success' => 'Student Added Successfully!'
-        ]);
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified student.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        $student = Student::find($id);
+        return response()->json($student);
     }
 
     /**
@@ -74,7 +72,7 @@ class StudentApiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->studentInterface->update($request, $id);
     }
 
     /**
@@ -86,11 +84,12 @@ class StudentApiController extends Controller
     public function destroy($id)
     {
         $this->studentInterface->destory($id);
-        return response()->json([
-            'success' => 'Student deleted successfully!'
-        ]);
     }
 
+    /**
+     * Get Major Model
+     * @return data with json
+     */
     public function getMajor()
     {
         $major = Major::all();

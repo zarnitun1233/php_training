@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\Student\StudentController;
+use App\Models\Student;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [StudentController::class, 'index']);
+Route::get('/students/search', [StudentController::class, 'search']);
 Route::get('/create', [StudentController::class, 'create']);
 Route::post('/store', [StudentController::class, 'store']);
 Route::get('/edit/{id}', [StudentController::class, 'edit']);
@@ -17,4 +19,7 @@ Route::get('/api', function () {
 });
 Route::get('/api/create', function () {
     return view('api.create');
+});
+Route::get('/api/students/edit/{id}', function () {
+    return view('api.edit');
 });

@@ -11,6 +11,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\StudentsExport;
+use App\Imports\StudentsImport;
+use Carbon\Carbon;
 
 /**
  * Data accessing object for post
@@ -22,13 +26,23 @@ class StudentDao implements StudentDaoInterface
      * Search Function
      * @param Request
      */
-    public function index(Request $request)
+    public function index()
     {
         $students = DB::table('students')
             ->join('majors', 'majors.id', '=', 'students.major_id')
             ->select('students.*', 'majors.major')
-            ->orderBy('id');
+            ->orderBy('id')
+            ->where('students.deleted_at', '=', NULL);
+        return $students->get();
+    }
 
+    public function search(Request $request)
+    {
+        $students = DB::table('students')
+            ->join('majors', 'majors.id', '=', 'students.major_id')
+            ->select('students.*', 'majors.major')
+            ->orderBy('id')
+            ->where('students.deleted_at', '=', NULL);
         $name = $request->name;
         $startDate = $request->start_date;
         $endDate = $request->end_date;
@@ -85,10 +99,32 @@ class StudentDao implements StudentDaoInterface
 
     /**
      * Update Function
-     * @param Request $request, @param Student $student
+     * @param Request $request, @param Student $id
      */
-    public function update(Request $request, Student $id)
+    public function update(Request $request, $id)
     {
-        $id->update($request->all());
+        $student = Student::find($id);
+        $student->name = $request->name;
+        $student->age = $request->age;
+        $student->major_id = $request->major_id;
+        $student->save();
+    }
+
+    /**
+     * Export Function
+     * @return \Illuminate\Support\Collection
+     */
+    public function export()
+    {
+        return Excel::download(new StudentsExport, 'students.csv');
+    }
+
+    /**
+     * Import Function
+     * @return \Illuminate\Support\Collection
+     */
+    public function import()
+    {
+        return Excel::import(new StudentsImport, request()->file('file'));
     }
 }

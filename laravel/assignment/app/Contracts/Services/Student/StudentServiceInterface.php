@@ -15,7 +15,13 @@ interface StudentServiceInterface
      * Home Page Function to show data
      * @param Request
      */
-    public function index(Request $request);
+    public function index();
+
+    /**
+     * Search Function
+     * @param Request $request
+     */
+    public function search(Request $request);
 
     /**
      * Show the form for creating a new resource.
@@ -44,5 +50,17 @@ interface StudentServiceInterface
      * Update Function
      * @param Request $request, @param Student $student
      */
-    public function update(Request $request, Student $id);
+    public function update(Request $request, $id);
+
+    /**
+     * Export Function
+     * @return \Illuminate\Support\Collection
+     */
+    public function export();
+
+    /**
+     * Import Function
+     * @return \Illuminate\Support\Collection
+     */
+    public function import();
 }

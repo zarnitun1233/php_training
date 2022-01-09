@@ -3,7 +3,7 @@
 @section('content')
 <div class="row mt-3">
   <h2>Search Students</h2>
-  <form action="" class="col-12">
+  <form action="{{ url('/students/search') }}" class="col-12" method="GET">
     <div class="form-group">
       <label for="">Name</label>
       <input type="search" name="name" id="" class="form-control" placeholder="Name">

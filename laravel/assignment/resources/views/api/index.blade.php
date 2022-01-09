@@ -23,62 +23,64 @@
       </div>
     </div>
 
-  <div class="add-student">
-    <p></p>
-  </div>
+    <div class="add-student">
+      <p></p>
+    </div>
 
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>No</th>
-        <th>Name</th>
-        <th>Age</th>
-        <th>Major</th>
-        <th width="280px">Action</th>
-      </tr>
-    </thead>
-    <tbody>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Major</th>
+          <th width="280px">Action</th>
+        </tr>
+      </thead>
+      <tbody>
 
-    </tbody>
-  </table>
+      </tbody>
+    </table>
   </div>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
     $.ajax({
       type: 'GET',
-      url: "http://localhost:8000/api/students", 
-      success: function(result){
-        result.forEach(post=>{
+      url: "http://localhost:8000/api/students",
+      success: function(result) {
+        result.forEach(post => {
           $("tbody").append(`<tr><td>${post.id}</td><td>${post.name}</td><td>${post.age}</td><td>${post.major}</td><td><form action="" method="POST">
-        <a class="btn btn-primary" href="">Edit</a><meta name="csrf-token" content="{{ csrf_token() }}">
+        <a class="btn btn-primary" href="api/students/edit/${post.id}">Edit</a><meta name="csrf-token" content="{{ csrf_token() }}">
         <a class="btn btn-danger deleteStudent" id="${post.id}">Delete</a>
       </form></td></tr>`);
         });
-    $.ajaxSetup({
-    headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-    });
-    $(".deleteStudent").click(function(){
-      alert("Are you sure want to delete?");
-      var id = $(this).attr('id');
-      $.ajax({
-        url:"/api/students/delete/" + id,
-        method: "DELETE",
-        data: {
-            "_token": "{{ csrf_token() }}",
-            "id": id
+
+        $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+        });
+
+        $(".deleteStudent").click(function() {
+          alert("Are you sure want to delete?");
+          var id = $(this).attr('id');
+          $.ajax({
+            url: "/api/students/delete/" + id,
+            method: "DELETE",
+            data: {
+              "_token": "{{ csrf_token() }}",
+              "id": id
             },
-        success:function(data) {
-          $(".deleteRecord").addClass("alert alert-success mt-3").append(data['success']);
-        },
-        fail:function() {
-          console.log("fail");
-        }
-      });
-  });
-}});
-    
+            success: function(data) {
+              window.location.reload();
+            },
+            fail: function() {
+              $(".deleteRecord").addClass("alert alert-danger mt-3").append("Something Wrong!");
+            }
+          });
+        });
+      }
+    });
   </script>
 </body>
 
