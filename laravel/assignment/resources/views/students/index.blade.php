@@ -44,6 +44,7 @@
     <th>Name</th>
     <th>Age</th>
     <th>Major</th>
+    <th>Email</th>
     <th width="280px">Action</th>
   </tr>
   @foreach ($students as $student)
@@ -52,6 +53,7 @@
     <td>{{ $student->name }}</td>
     <td>{{ $student->age }}</td>
     <td>{{ $student->major}}</td>
+    <td>{{ $student->email}}</td>
     <td>
       <form action="{{ url('delete/'.$student->id) }}" method="POST">
         <a class="btn btn-primary" href="{{ url('/edit',$student->id) }}">Edit</a>

@@ -18,6 +18,7 @@ class CreateStudentModelsTable extends Migration
             $table->string('name');
             $table->integer('age');
             $table->foreignId('major_id')->references('id')->on('majors');
+            $table->string('email');
             $table->timestamps();
             $table->softDeletes();
         });

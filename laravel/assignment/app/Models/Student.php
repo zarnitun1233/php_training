@@ -12,7 +12,7 @@ class Student extends Model
     use HasFactory;
     protected $dates = ['deleted_at'];
     protected $fillable = [
-        'name', 'age', 'major_id'
+        'name', 'age', 'major_id', 'email'
     ];
 
     /**

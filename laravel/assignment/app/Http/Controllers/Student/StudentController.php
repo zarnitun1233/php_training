@@ -70,6 +70,7 @@ class StudentController extends Controller
             'name' => 'required',
             'age' => 'required',
             'major_id' => 'required',
+            'email' => 'required',
         ]);
         $this->studentInterface->store($request);
         return redirect('/')->with('success', 'Student created successfully.');
@@ -100,6 +101,7 @@ class StudentController extends Controller
             'name' => 'required',
             'age' => 'required',
             'major_id' => 'required',
+            'email' => 'required',
         ]);
         $this->studentInterface->update($request, $id);
         return redirect('/')->with('success', 'Student updated successfully');

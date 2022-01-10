@@ -59,6 +59,13 @@
             <div class="error-major"></div>
           </div>
         </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <div class="form-group">
+            <strong>Email:</strong>
+            <input type="email" name="email" value="" id="email" class="form-control" placeholder="Email">
+            <div class="error-email"></div>
+          </div>
+        </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
           <button type="submit" id="submit" class="btn btn-primary mt-2">Submit</button>
         </div>
@@ -75,6 +82,7 @@
       success: function(data) {
         $("#name").val(data['name']);
         $("#age").val(data['age']);
+        $("#email").val(data['email']);
       },
     });
 
@@ -106,6 +114,7 @@
           $name = $('#name').val();
           $age = $('#age').val();
           $major = $('#major').val();
+          $email = $('#email').val();
           if (!$name) {
             $(".error-name").addClass("alert alert-danger").append("Name Field Cannot be empty!");
           }
@@ -114,6 +123,9 @@
           }
           if (!$major) {
             $(".error-major").addClass("alert alert-danger").append("Major Field Cannot be empty!");
+          }
+          if (!$email) {
+            $(".error-email").addClass("alert alert-danger").append("Email Field Cannot be empty!");
           }
         }
       });

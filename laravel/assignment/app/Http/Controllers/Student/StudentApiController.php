@@ -47,6 +47,7 @@ class StudentApiController extends Controller
             'name' => 'required',
             'age' => 'required',
             'major_id' => 'required',
+            'email' => 'required',
         ]);
         $this->studentInterface->store($request);
     }

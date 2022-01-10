@@ -16,6 +16,7 @@ class StudentFactory extends Factory
             'name' => $this->faker->name,
             'age' => rand(10, 60),
             'major_id' => rand(1, 5),
+            'email' => $this->faker->email,
             'created_at' => $this->faker->dateTimeBetween($startDate = '-5 years', $endDate = 'now', $timezone = null),
             'updated_at' => $this->faker->dateTimeBetween($startDate = '-5 years', $endDate = 'now', $timezone = null),
         ];

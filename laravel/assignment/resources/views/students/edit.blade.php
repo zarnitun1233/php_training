@@ -52,6 +52,12 @@
         </select>
       </div>
     </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+      <div class="form-group">
+        <strong>Email:</strong>
+        <input type="email" name="email" value="{{ $student->email }}" class="form-control">
+      </div>
+    </div>
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
       <button type="submit" class="btn btn-primary mt-2">Submit</button>
     </div>

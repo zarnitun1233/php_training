@@ -106,6 +106,7 @@ class StudentDao implements StudentDaoInterface
         $student->name = $request->name;
         $student->age = $request->age;
         $student->major_id = $request->major_id;
+        $student->email = $request->email;
         $student->save();
     }
 }

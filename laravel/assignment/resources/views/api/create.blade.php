@@ -58,6 +58,13 @@
             <div class="error-major"></div>
           </div>
         </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <div class="form-group">
+            <strong>Email:</strong>
+            <input type="email" name="email" class="form-control" placeholder="Email" id="email">
+            <div class="error-email"></div>
+          </div>
+        </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
           <button type="submit" class="btn btn-primary mt-3 submit" id="submit">Submit</button>
         </div>
@@ -97,6 +104,9 @@
           }
           if ($error['errors']['major']) {
             $(".error-major").addClass("alert alert-danger").append($error['errors']['major'][0]);
+          }
+          if ($error['errors']['email']) {
+            $(".error-email").addClass("alert alert-danger").append($error['errors']['email'][0]);
           }
         }
       });
