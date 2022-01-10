@@ -35,6 +35,10 @@ class StudentDao implements StudentDaoInterface
         return $students->get();
     }
 
+    /**
+     * Search Function
+     * @param Request $request
+     */
     public function search(Request $request)
     {
         $students = DB::table('students')
@@ -108,5 +112,19 @@ class StudentDao implements StudentDaoInterface
         $student->major_id = $request->major_id;
         $student->email = $request->email;
         $student->save();
+    }
+
+    /**
+     * Send Student Data to email
+     */
+    public function sendMailData()
+    {
+        $students = DB::table('students')
+            ->join('majors', 'majors.id', '=', 'students.major_id')
+            ->select('students.*', 'majors.major')
+            ->orderBy('id', 'DESC')
+            ->limit('10')
+            ->where('students.deleted_at', '=', NULL);
+        return $students->get();
     }
 }

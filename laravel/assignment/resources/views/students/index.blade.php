@@ -26,6 +26,7 @@
       <h2>Students List</h2>
     </div>
     <div class="float-end">
+      <a class="btn btn-success" href="{{ url('/sendMailForm') }}">Send Mail</a>
       <a class="btn btn-success" href="{{ url('/importExportView') }}">Import/Export View</a>
       <a class="btn btn-success" href="{{ url('/create') }}">Add new Students</a>
     </div>

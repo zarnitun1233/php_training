@@ -12,17 +12,6 @@
   </div>
 </div>
 
-@if ($errors->any())
-<div class="alert alert-danger">
-  <strong>Whoops!</strong> There were some problems with your input.<br><br>
-  <ul>
-    @foreach ($errors->all() as $error)
-    <li>{{ $error }}</li>
-    @endforeach
-  </ul>
-</div>
-@endif
-
 <form action="{{ url('/update',$student->id) }}" method="POST">
   @csrf
   @method('PUT')
@@ -33,12 +22,22 @@
         <strong>Name:</strong>
         <input type="text" name="name" value="{{ $student->name }}" class="form-control" placeholder="Name">
       </div>
+      @error('name')
+      <span class="alert alert-danger mt-1 mb-1 d-block">
+        {{ $message }}
+      </span>
+      @enderror
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
       <div class="form-group">
         <strong>Age:</strong>
         <input type="number" name="age" value="{{ $student->age }}" class="form-control">
       </div>
+      @error('age')
+      <span class="alert alert-danger mt-1 mb-1 d-block">
+        {{ $message }}
+      </span>
+      @enderror
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
       <div class="form-group">
@@ -50,6 +49,11 @@
           </option>
           @endforeach
         </select>
+        @error('major')
+        <span class="alert alert-danger mt-1 mb-1 d-block">
+          {{ $message }}
+        </span>
+        @enderror
       </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -57,6 +61,11 @@
         <strong>Email:</strong>
         <input type="email" name="email" value="{{ $student->email }}" class="form-control">
       </div>
+      @error('email')
+      <span class="alert alert-danger mt-1 mb-1 d-block">
+        {{ $message }}
+      </span>
+      @enderror
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
       <button type="submit" class="btn btn-primary mt-2">Submit</button>

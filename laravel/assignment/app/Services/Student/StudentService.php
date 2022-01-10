@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\StudentsExport;
 use App\Imports\StudentsImport;
+use App\Mail\TestMail;
+use App\Mail\sendMailData;
+use Illuminate\Support\Facades\Mail;
 
 /**
  * Service class for post.
@@ -112,5 +115,29 @@ class StudentService implements StudentServiceInterface
     public function import()
     {
         return Excel::import(new StudentsImport, request()->file('file'));
+    }
+
+    /**
+     * Send Mail to created user email
+     */
+    public function sendMail()
+    {
+        $details = [
+            'title' => 'Successfully Created Account!',
+            'body' => 'You just created account in student crud function.'
+        ];
+
+        $email = request()->email;
+        Mail::to("$email")->send(new TestMail($details));
+    }
+
+    /**
+     * Send Student Data to email
+     */
+    public function sendMailData()
+    {
+        $students = $this->studentDao->sendMailData();
+        $email = request()->email;
+        return Mail::to("$email")->send(new SendMailData($students));
     }
 }

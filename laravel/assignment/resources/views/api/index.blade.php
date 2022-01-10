@@ -18,6 +18,7 @@
           <h2>Students List</h2>
         </div>
         <div class="float-end">
+          <a class="btn btn-success" href="{{ url('api/sendMail') }}">Send Data</a>
           <a class="btn btn-success" href="{{ url('api/create') }}">Add new Students</a>
         </div>
       </div>

@@ -91,7 +91,7 @@
         method: 'POST',
         data: $('#addStudent').serialize(),
         success: function(data) {
-          alert("Student Added Successfully!");
+          alert("Student Added and Sent Mail Successfully!");
           window.location = "/api";
         },
         error: function(err) {

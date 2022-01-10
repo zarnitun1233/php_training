@@ -50,6 +50,7 @@ class StudentApiController extends Controller
             'email' => 'required',
         ]);
         $this->studentInterface->store($request);
+        $this->studentInterface->sendMail();
     }
 
     /**
@@ -95,5 +96,16 @@ class StudentApiController extends Controller
     {
         $major = Major::all();
         return response()->json($major);
+    }
+
+    /**
+     * Send Student Data to email
+     */
+    public function sendMailData(Request $request)
+    {
+        $request->validate([
+            'email' => 'required',
+        ]);
+        $this->studentInterface->sendMailData();
     }
 }

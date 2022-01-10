@@ -63,4 +63,14 @@ interface StudentServiceInterface
      * @return \Illuminate\Support\Collection
      */
     public function import();
+
+    /**
+     * Send Mail to created user email
+     */
+    public function sendMail();
+
+    /**
+     * Send Student Data to email
+     */
+    public function sendMailData();
 }
