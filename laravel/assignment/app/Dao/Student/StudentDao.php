@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\StudentsExport;
 use App\Imports\StudentsImport;
-use Carbon\Carbon;
 
 /**
  * Data accessing object for post
@@ -108,23 +107,5 @@ class StudentDao implements StudentDaoInterface
         $student->age = $request->age;
         $student->major_id = $request->major_id;
         $student->save();
-    }
-
-    /**
-     * Export Function
-     * @return \Illuminate\Support\Collection
-     */
-    public function export()
-    {
-        return Excel::download(new StudentsExport, 'students.csv');
-    }
-
-    /**
-     * Import Function
-     * @return \Illuminate\Support\Collection
-     */
-    public function import()
-    {
-        return Excel::import(new StudentsImport, request()->file('file'));
     }
 }

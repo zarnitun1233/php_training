@@ -51,16 +51,4 @@ interface StudentDaoInterface
      * @param Request $request, @param Student $id
      */
     public function update(Request $request, $id);
-
-    /**
-     * Export Function
-     * @return \Illuminate\Support\Collection
-     */
-    public function export();
-
-    /**
-     * Import Function
-     * @return \Illuminate\Support\Collection
-     */
-    public function import();
 }

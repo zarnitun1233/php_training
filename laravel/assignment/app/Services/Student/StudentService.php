@@ -9,6 +9,9 @@ use App\Contracts\Services\Student\StudentServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\StudentsExport;
+use App\Imports\StudentsImport;
 
 /**
  * Service class for post.
@@ -99,7 +102,7 @@ class StudentService implements StudentServiceInterface
      */
     public function export()
     {
-        return $this->studentDao->export();
+        return Excel::download(new StudentsExport, 'students.csv');
     }
 
     /**
@@ -108,6 +111,6 @@ class StudentService implements StudentServiceInterface
      */
     public function import()
     {
-        return $this->studentDao->import();
+        return Excel::import(new StudentsImport, request()->file('file'));
     }
 }
