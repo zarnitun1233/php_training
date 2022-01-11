@@ -127,4 +127,27 @@ class StudentDao implements StudentDaoInterface
             ->where('students.deleted_at', '=', NULL);
         return $students->get();
     }
+
+    /**
+     * Get Major Model
+     * @return data with json
+     */
+    public function getMajor()
+    {
+        return Major::all();
+    }
+
+    /**
+     * Get Major By Id
+     * @param $id
+     */
+    public function getMajorById($id)
+    {
+        $major = DB::table('students')
+            ->join('majors', 'majors.id', '=', 'students.major_id')
+            ->select('majors.id', 'majors.major')
+            ->where('students.deleted_at', '=', NULL)
+            ->where('students.id', '=', $id);
+        return $major->get();
+    }
 }

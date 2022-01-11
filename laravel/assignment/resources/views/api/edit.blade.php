@@ -22,17 +22,6 @@
       </div>
     </div>
 
-    @if ($errors->any())
-    <div class="alert alert-danger">
-      <strong>Whoops!</strong> There were some problems with your input.<br><br>
-      <ul>
-        @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-        @endforeach
-      </ul>
-    </div>
-    @endif
-
     <form action="" method="POST" id="updateStudent">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -57,6 +46,7 @@
 
             </select>
             <div class="error-major"></div>
+            <input type="hidden" id="major_id" val="">
           </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -83,12 +73,22 @@
         $("#name").val(data['name']);
         $("#age").val(data['age']);
         $("#email").val(data['email']);
+      }
+    });
+
+    $.ajax({
+      type: 'GET',
+      url: "http://localhost:8000/api/majors/" + id,
+      success: function(data) {
+        $("#major").append(`
+          <option value="${data[0].id}" selected>${data[0].major}</option>
+        `);
       },
     });
 
     $.ajax({
       type: 'GET',
-      url: "http://localhost:8000/api/majors",
+      url: "http://localhost:8000/api/majors/",
       success: function(data) {
         data.forEach(result => {
           $("#major").append(`

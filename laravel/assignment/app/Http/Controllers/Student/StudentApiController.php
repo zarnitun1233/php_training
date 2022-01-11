@@ -7,6 +7,7 @@ use App\Models\Student;
 use App\Models\Major;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StudentApiController extends Controller
 {
@@ -54,18 +55,6 @@ class StudentApiController extends Controller
     }
 
     /**
-     * Display the specified student.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $student = Student::find($id);
-        return response()->json($student);
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -94,8 +83,8 @@ class StudentApiController extends Controller
      */
     public function getMajor()
     {
-        $major = Major::all();
-        return response()->json($major);
+        $majors = $this->studentInterface->getMajor();
+        return response()->json($majors);
     }
 
     /**
@@ -107,5 +96,15 @@ class StudentApiController extends Controller
             'email' => 'required',
         ]);
         $this->studentInterface->sendMailData();
+    }
+
+    /**
+     * Get Major By Id
+     * @param $id
+     */
+    public function getMajorById($id)
+    {
+        $major = $this->studentInterface->getMajorById($id);
+        return response()->json($major);
     }
 }

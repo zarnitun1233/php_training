@@ -9,13 +9,20 @@
 </head>
 
 <body>
-  <p>Name | Age | Major</p>
-  @foreach($students as $student)
-  {{ $student->name }} |
-  {{ $student->age }} |
-  {{ $student->major }} <br>
-  @endforeach
-
+  <table cellpadding="2" width="300" border="1" align="left">
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Major</th>
+    </tr>
+    @foreach($students as $student)
+    <tr>
+      <td>{{ $student->name }}</td>
+      <td>{{ $student->age }}</td>
+      <td>{{ $student->major }}</td>
+    </tr>
+    @endforeach
+  </table>
 </body>
 
 </html>

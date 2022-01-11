@@ -140,4 +140,22 @@ class StudentService implements StudentServiceInterface
         $email = request()->email;
         return Mail::to("$email")->send(new SendMailData($students));
     }
+
+    /**
+     * Get Major Model
+     * @return data with json
+     */
+    public function getMajor()
+    {
+        return $this->studentDao->getMajor();
+    }
+
+    /**
+     * Get Major By Id
+     * @param $id
+     */
+    public function getMajorById($id)
+    {
+        return $this->studentDao->getMajorById($id);
+    }
 }

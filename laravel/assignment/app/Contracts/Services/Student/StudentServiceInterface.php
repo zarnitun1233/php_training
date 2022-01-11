@@ -73,4 +73,16 @@ interface StudentServiceInterface
      * Send Student Data to email
      */
     public function sendMailData();
+
+    /**
+     * Get Major Model
+     * @return data with json
+     */
+    public function getMajor();
+
+    /**
+     * Get Major By Id
+     * @param $id
+     */
+    public function getMajorById($id);
 }
