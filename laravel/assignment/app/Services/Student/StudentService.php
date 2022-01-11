@@ -45,6 +45,17 @@ class StudentService implements StudentServiceInterface
     }
 
     /**
+     * Display the specified student.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        return $this->studentDao->show($id);
+    }
+
+    /**
      * Search Function
      * @param Request $request
      */

@@ -18,6 +18,14 @@ interface StudentDaoInterface
     public function index();
 
     /**
+     * Display the specified student.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id);
+
+    /**
      * Search Function
      * @param Request $request
      */

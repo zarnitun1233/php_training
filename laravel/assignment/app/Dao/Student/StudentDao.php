@@ -36,6 +36,17 @@ class StudentDao implements StudentDaoInterface
     }
 
     /**
+     * Display the specified student.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        return Student::find($id);
+    }
+
+    /**
      * Search Function
      * @param Request $request
      */

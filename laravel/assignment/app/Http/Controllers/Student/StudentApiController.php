@@ -37,6 +37,18 @@ class StudentApiController extends Controller
     }
 
     /**
+     * Display the specified student.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $student = $this->studentInterface->show($id);
+        return response()->json($student);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
