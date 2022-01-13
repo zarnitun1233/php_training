@@ -51,7 +51,7 @@
       url: "http://localhost:8000/api/students",
       success: function(result) {
         result.forEach(post => {
-          $("tbody").append(`<tr><td>${post.id}</td><td>${post.name}</td><td>${post.age}</td><td>${post.major}</td><td>${post.email}</td><td><form action="" method="POST">
+          $("tbody").append(`<tr><td>${post.id}</td><td>${post.name}</td><td>${post.age}</td><td>${post.major.major}</td><td>${post.email}</td><td><form action="" method="POST">
         <a class="btn btn-primary" href="api/students/edit/${post.id}">Edit</a><meta name="csrf-token" content="{{ csrf_token() }}">
         <a class="btn btn-danger deleteStudent" id="${post.id}">Delete</a>
       </form></td></tr>`);

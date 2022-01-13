@@ -4,16 +4,10 @@ namespace App\Dao\Student;
 
 use App\Models\Student;
 use App\Models\Major;
-use App\Models\Task;
-use App\Models\Post;
 use App\Contracts\Dao\Student\StudentDaoInterface;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\StudentsExport;
-use App\Imports\StudentsImport;
+use App\Http\Requests\SendMailDataRequest;
 
 /**
  * Data accessing object for post
@@ -27,12 +21,7 @@ class StudentDao implements StudentDaoInterface
      */
     public function index()
     {
-        $students = DB::table('students')
-            ->join('majors', 'majors.id', '=', 'students.major_id')
-            ->select('students.*', 'majors.major')
-            ->orderBy('id')
-            ->where('students.deleted_at', '=', NULL);
-        return $students->get();
+        return Student::with('major')->get();
     }
 
     /**
@@ -98,8 +87,7 @@ class StudentDao implements StudentDaoInterface
      */
     public function destory($id)
     {
-        $student = Student::find($id);
-        $student->delete();
+        DB::table('students')->delete($id);
     }
 
     /**
@@ -108,7 +96,14 @@ class StudentDao implements StudentDaoInterface
      */
     public function store(Request $request)
     {
-        Student::create($request->all());
+        return DB::table('students')->insert([
+            'name' => $request->name,
+            'age' => $request->age,
+            'major_id' => $request->major_id,
+            'email' => $request->email,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
     }
 
     /**
@@ -117,26 +112,22 @@ class StudentDao implements StudentDaoInterface
      */
     public function update(Request $request, $id)
     {
-        $student = Student::find($id);
-        $student->name = $request->name;
-        $student->age = $request->age;
-        $student->major_id = $request->major_id;
-        $student->email = $request->email;
-        $student->save();
+        return DB::table('students')
+            ->where('id', $id)
+            ->update([
+                'name' => $request->name,
+                'age' => $request->age,
+                'major_id' => $request->major_id,
+                'email' => $request->email,
+            ]);
     }
 
     /**
      * Send Student Data to email
      */
-    public function sendMailData()
+    public function sendMailData(SendMailDataRequest $request)
     {
-        $students = DB::table('students')
-            ->join('majors', 'majors.id', '=', 'students.major_id')
-            ->select('students.*', 'majors.major')
-            ->orderBy('id', 'DESC')
-            ->limit('10')
-            ->where('students.deleted_at', '=', NULL);
-        return $students->get();
+        return Student::where('deleted_at', NULL)->with('major')->orderBy('id', 'desc')->take(10)->get();
     }
 
     /**
@@ -154,11 +145,6 @@ class StudentDao implements StudentDaoInterface
      */
     public function getMajorById($id)
     {
-        $major = DB::table('students')
-            ->join('majors', 'majors.id', '=', 'students.major_id')
-            ->select('majors.id', 'majors.major')
-            ->where('students.deleted_at', '=', NULL)
-            ->where('students.id', '=', $id);
-        return $major->get();
+        return Major::join('students', 'majors.id', '=', 'students.major_id')->where('students.id', $id)->get();
     }
 }

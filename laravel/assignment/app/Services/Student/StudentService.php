@@ -3,18 +3,16 @@
 namespace App\Services\Student;
 
 use App\Models\Student;
-use App\Models\Task;
 use App\Contracts\Dao\Student\StudentDaoInterface;
 use App\Contracts\Services\Student\StudentServiceInterface;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\StudentsExport;
 use App\Imports\StudentsImport;
 use App\Mail\TestMail;
 use App\Mail\sendMailData;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\SendMailDataRequest;
 
 /**
  * Service class for post.
@@ -145,9 +143,9 @@ class StudentService implements StudentServiceInterface
     /**
      * Send Student Data to email
      */
-    public function sendMailData()
+    public function sendMailData(SendMailDataRequest $request)
     {
-        $students = $this->studentDao->sendMailData();
+        $students = $this->studentDao->sendMailData($request);
         $email = request()->email;
         return Mail::to("$email")->send(new SendMailData($students));
     }

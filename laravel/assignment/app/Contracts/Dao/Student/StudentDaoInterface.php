@@ -3,8 +3,8 @@
 namespace App\Contracts\Dao\Student;
 
 use App\Models\Student;
-use App\Models\Task;
 use Illuminate\Http\Request;
+use App\Http\Requests\SendMailDataRequest;
 
 /**
  * Interface for Data Accessing Object of Post
@@ -63,7 +63,7 @@ interface StudentDaoInterface
     /**
      * Send Student Data to email
      */
-    public function sendMailData();
+    public function sendMailData(SendMailDataRequest $request);
 
     /**
      * Get Major Model

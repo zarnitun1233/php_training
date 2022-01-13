@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Student;
 
 use App\Contracts\Services\Student\StudentServiceInterface;
-use App\Models\Student;
-use App\Models\Major;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\SendMailDataRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class StudentApiController extends Controller
 {
@@ -54,14 +53,8 @@ class StudentApiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'age' => 'required',
-            'major_id' => 'required',
-            'email' => 'required',
-        ]);
         $this->studentInterface->store($request);
         $this->studentInterface->sendMail();
     }
@@ -102,12 +95,9 @@ class StudentApiController extends Controller
     /**
      * Send Student Data to email
      */
-    public function sendMailData(Request $request)
+    public function sendMailData(SendMailDataRequest $request)
     {
-        $request->validate([
-            'email' => 'required',
-        ]);
-        $this->studentInterface->sendMailData();
+        $this->studentInterface->sendMailData($request);
     }
 
     /**

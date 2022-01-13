@@ -4,15 +4,10 @@ namespace App\Http\Controllers\Student;
 
 use App\Contracts\Services\Student\StudentServiceInterface;
 use App\Models\Student;
-use App\Models\Major;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\SendMailDataRequest;
 use Illuminate\Http\Request;
-use App\Exports\StudentsExport;
-use App\Imports\StudentsImport;
-use Maatwebsite\Excel\Facades\Excel;
-use Illuminate\Support\Facades\DB;
-use App\Mail\SendMailData;
-use Illuminate\Support\Facades\Mail;
 
 class StudentController extends Controller
 {
@@ -38,7 +33,7 @@ class StudentController extends Controller
     public function index()
     {
         $students = $this->studentInterface->index();
-        return view('students.index', compact('students'));
+        return view('students.index')->with('students', $students);
     }
 
     /**
@@ -48,7 +43,7 @@ class StudentController extends Controller
     public function search(Request $request)
     {
         $students = $this->studentInterface->search($request);
-        return view('students.index', compact('students'));
+        return view('students.index')->with('students', $students);
     }
 
     /**
@@ -58,7 +53,7 @@ class StudentController extends Controller
     public function create()
     {
         $majors = $this->studentInterface->create();
-        return view('students.create', compact('majors'));
+        return view('students.create')->with('majors', $majors);
     }
 
     /**
@@ -66,14 +61,8 @@ class StudentController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'age' => 'required',
-            'major_id' => 'required',
-            'email' => 'required',
-        ]);
         $this->studentInterface->store($request);
         $this->studentInterface->sendMail();
         return redirect('/')->with('success', 'Student created and Send Mail successfully!');
@@ -87,10 +76,7 @@ class StudentController extends Controller
     public function edit(Student $id)
     {
         $majors = $this->studentInterface->edit($id);
-        return view('students.edit', [
-            'student' => $id,
-            'majors' => $majors,
-        ]);
+        return view('students.edit')->with('student', $id)->with('majors', $majors);
     }
 
     /**
@@ -98,14 +84,8 @@ class StudentController extends Controller
      * @param Request $request, @param Student $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StorePostRequest $request, $id)
     {
-        $request->validate([
-            'name' => 'required',
-            'age' => 'required',
-            'major_id' => 'required',
-            'email' => 'required',
-        ]);
         $this->studentInterface->update($request, $id);
         return redirect('/')->with('success', 'Student updated successfully');
     }
@@ -153,12 +133,9 @@ class StudentController extends Controller
      * Send Student Data to email
      * @param Request $request
      */
-    public function sendMailData(Request $request)
+    public function sendMailData(SendMailDataRequest $request)
     {
-        $request->validate([
-            'email' => 'required',
-        ]);
-        $this->studentInterface->sendMailData();
+        $this->studentInterface->sendMailData($request);
         return redirect("/")->with('success', 'Student Data Sent to email Successfully');
     }
 

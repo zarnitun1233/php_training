@@ -3,8 +3,8 @@
 namespace App\Contracts\Services\Student;
 
 use App\Models\Student;
-use App\Models\Task;
 use Illuminate\Http\Request;
+use App\Http\Requests\SendMailDataRequest;
 
 /**
  * Interface for post service
@@ -80,7 +80,7 @@ interface StudentServiceInterface
     /**
      * Send Student Data to email
      */
-    public function sendMailData();
+    public function sendMailData(SendMailDataRequest $request);
 
     /**
      * Get Major Model

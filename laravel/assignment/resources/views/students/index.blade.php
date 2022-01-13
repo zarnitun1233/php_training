@@ -53,7 +53,7 @@
     <td>{{ $student->id }}</td>
     <td>{{ $student->name }}</td>
     <td>{{ $student->age }}</td>
-    <td>{{ $student->major}}</td>
+    <td>{{ $student->major->major}}</td>
     <td>{{ $student->email}}</td>
     <td>
       <form action="{{ url('delete/'.$student->id) }}" method="POST">

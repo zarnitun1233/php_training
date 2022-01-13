@@ -19,7 +19,7 @@
     <tr>
       <td>{{ $student->name }}</td>
       <td>{{ $student->age }}</td>
-      <td>{{ $student->major }}</td>
+      <td>{{ $student->major->major }}</td>
     </tr>
     @endforeach
   </table>
