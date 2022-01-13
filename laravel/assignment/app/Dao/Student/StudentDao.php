@@ -87,7 +87,12 @@ class StudentDao implements StudentDaoInterface
      */
     public function destory($id)
     {
-        DB::table('students')->delete($id);
+        //DB::table('students')->delete($id);
+        return DB::table('students')
+            ->where('id', $id)
+            ->update([
+                'deleted_at' => now()
+            ]);
     }
 
     /**
